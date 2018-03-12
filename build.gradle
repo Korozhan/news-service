@@ -11,10 +11,15 @@ repositories {
 }
 ext {
     springdataMongodbVersion = '2.0.5.RELEASE'
+    springframeworkVersion = '5.0.4.RELEASE'
     junitVersion = '4.12'
 }
 
 dependencies {
     compile "org.springframework.data:spring-data-mongodb:${springdataMongodbVersion}"
+    compile "org.springframework:spring-webmvc:${springframeworkVersion}"
+    compile "org.springframework':spring-web:${springframeworkVersion}"
+    compile "org.springframework:spring-context-support:${springframeworkVersion}"
+    compile "org.springframework:spring-test:${springframeworkVersion}"
     testCompile "junit:junit:${junitVersion}"
 }
