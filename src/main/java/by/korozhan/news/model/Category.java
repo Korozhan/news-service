@@ -30,7 +30,7 @@ public class Category implements Serializable{
     public Category(ObjectId id, String displayName, List<News> news) {
         this.id = id;
         this.displayName = displayName;
-//        this.news = news;
+        this.news = news;
     }
 
     public ObjectId getId() {
