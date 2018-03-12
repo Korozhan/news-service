@@ -12,6 +12,7 @@ repositories {
 ext {
     springdataMongodbVersion = '2.0.5.RELEASE'
     springframeworkVersion = '5.0.4.RELEASE'
+    servletapiVersion = '4.0.0'
     guavaVersion = '24.0-jre'
     log4jVersion = '1.2.17'
     slf4jVersion = '1.7.25'
@@ -23,6 +24,7 @@ dependencies {
     compile "org.springframework:spring-webmvc:${springframeworkVersion}"
     compile "org.springframework':spring-web:${springframeworkVersion}"
     compile "org.springframework:spring-context-support:${springframeworkVersion}"
+    compile "javax.servlet:javax.servlet-api:${servletapiVersion}"
     compile "org.springframework:spring-test:${springframeworkVersion}"
     compile "com.google.guava:guava:${guavaVersion}"
     compile "log4j:log4j:${log4jVersion}"
