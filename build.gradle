@@ -12,6 +12,7 @@ repositories {
 ext {
     springdataMongodbVersion = '2.0.5.RELEASE'
     springframeworkVersion = '5.0.4.RELEASE'
+    guavaVersion = '24.0-jre'
     junitVersion = '4.12'
 }
 
@@ -21,5 +22,6 @@ dependencies {
     compile "org.springframework':spring-web:${springframeworkVersion}"
     compile "org.springframework:spring-context-support:${springframeworkVersion}"
     compile "org.springframework:spring-test:${springframeworkVersion}"
+    compile "com.google.guava:guava:${guavaVersion}"
     testCompile "junit:junit:${junitVersion}"
 }
