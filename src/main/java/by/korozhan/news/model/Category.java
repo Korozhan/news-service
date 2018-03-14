@@ -1,6 +1,5 @@
 package by.korozhan.news.model;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,7 +13,7 @@ import java.util.List;
 @Document
 public class Category implements Serializable{
     @Id
-    private ObjectId id;
+    private Long id;
     private String displayName;
     @DBRef
     private List<News> news;
@@ -22,22 +21,22 @@ public class Category implements Serializable{
     public Category() {
     }
 
-    public Category(ObjectId id, String displayName) {
+    public Category(Long id, String displayName) {
         this.id = id;
         this.displayName = displayName;
     }
 
-    public Category(ObjectId id, String displayName, List<News> news) {
+    public Category(Long id, String displayName, List<News> news) {
         this.id = id;
         this.displayName = displayName;
         this.news = news;
     }
 
-    public ObjectId getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

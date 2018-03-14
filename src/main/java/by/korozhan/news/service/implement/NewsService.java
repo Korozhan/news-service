@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Veronika Korozhan March 11, 2018.
@@ -38,13 +39,13 @@ public class NewsService implements INewsService {
 
     @Transactional(readOnly = true)
     @Override
-    public News findOne(Integer id) {
-        return newsRepository.findOne(id);
+    public Optional<News> findOne(Integer id) {
+        return newsRepository.findById(id);
     }
 
     @Override
     public boolean exists(Integer id) {
-        return newsRepository.exists(id);
+        return newsRepository.existsById(id);
     }
 
     @Override

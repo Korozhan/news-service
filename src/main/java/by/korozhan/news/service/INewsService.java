@@ -3,6 +3,7 @@ package by.korozhan.news.service;
 import by.korozhan.news.model.News;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Veronika Korozhan March 11, 2018.
@@ -15,7 +16,7 @@ public interface INewsService {
 
     List<News> findAll();
 
-    News findOne(Integer id);
+    Optional<News> findOne(Integer id);
 
     boolean exists(Integer id);
 

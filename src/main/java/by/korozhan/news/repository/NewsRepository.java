@@ -9,7 +9,7 @@ import java.util.List;
  * Veronika Korozhan March 11, 2018.
  */
 @Repository
-public interface NewsRepository extends GenericRepository<News, Integer> {
+public interface NewsRepository extends GenericRepository<News, Long> {
 
     List<News> findByTitle(String title);
 }

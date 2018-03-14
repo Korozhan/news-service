@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Veronika Korozhan March 11, 2018.
@@ -38,13 +39,13 @@ public class CategoryService implements ICategoryService {
 
     @Transactional(readOnly = true)
     @Override
-    public Category findOne(Integer id) {
-        return categoryRepository.findOne(id);
+    public Optional<Category> findOne(Integer id) {
+        return categoryRepository.findById(id);
     }
 
     @Override
     public boolean exists(Integer id) {
-        return categoryRepository.exists(id);
+        return categoryRepository.existsById(id);
     }
 
     @Override

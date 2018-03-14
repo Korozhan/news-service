@@ -1,6 +1,5 @@
 package by.korozhan.news.model;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,7 +12,7 @@ import java.util.Date;
 @Document
 public class News implements Serializable{
     @Id
-    private ObjectId id;
+    private Long id;
     private Date publicDate;
     private String title;
     private String body;
@@ -27,18 +26,18 @@ public class News implements Serializable{
         this.body = body;
     }
 
-    public News(ObjectId id, Date publicDate, String title, String body) {
+    public News(Long id, Date publicDate, String title, String body) {
         this.id = id;
         this.publicDate = publicDate;
         this.title = title;
         this.body = body;
     }
 
-    public ObjectId getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

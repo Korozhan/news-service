@@ -3,6 +3,7 @@ package by.korozhan.news.service;
 import by.korozhan.news.model.Category;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Veronika Korozhan March 11, 2018.
@@ -14,7 +15,7 @@ public interface ICategoryService {
 
     List<Category> findAll();
 
-    Category findOne(Integer id);
+    Optional<Category> findOne(Integer id);
 
     boolean exists(Integer id);
 
