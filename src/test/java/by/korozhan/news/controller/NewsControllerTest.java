@@ -1,47 +1,28 @@
 package by.korozhan.news.controller;
 
-import by.korozhan.news.config.AppConfig;
-import by.korozhan.news.config.WebConfig;
 import by.korozhan.news.model.News;
 import by.korozhan.news.service.INewsService;
 import by.korozhan.news.util.DateUtil;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Date;
 
+import static by.korozhan.news.util.Constants.API_NEWS;
 import static by.korozhan.news.util.Matchers.validBsonId;
 import static java.lang.System.currentTimeMillis;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
  * Veronika Korozhan March 12, 2018.
  */
-@RunWith(SpringRunner.class)
-@WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class, WebConfig.class})
-public class NewsControllerTest {
-    private static final String API_NEWS = "/api/news";
-
-    private MockMvc mockMvc;
-    @Autowired
-    private WebApplicationContext wac;
-    @Autowired
-    private ObjectMapper objectMapper;
+public class NewsControllerTest extends AbstractControllerTest{
     @Autowired
     private INewsService newsService;
 
@@ -49,7 +30,7 @@ public class NewsControllerTest {
 
     @Before
     public void setUp() throws Exception {
-        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
+        super.setUp();
         testNews = newsService.save(new News(new Date(), "test title", "test body"));
     }
 
@@ -73,7 +54,7 @@ public class NewsControllerTest {
 
     @Test
     public void getNews() throws Exception {
-        mockMvc.perform(get(API_NEWS + "/" + testNews.getId())
+        mockMvc.perform(get(String.join("/", API_NEWS, testNews.getId()))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -85,7 +66,7 @@ public class NewsControllerTest {
 
     @Test
     public void saveNews() throws Exception {
-        News news = new News(new Date(), "test-new-title", "test-new-body");
+        News news = new News(new Date(), "test new title", "test new body");
         mockMvc.perform(post(API_NEWS)
                 .content(objectMapper.writeValueAsString(news))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -114,7 +95,7 @@ public class NewsControllerTest {
 
     @Test
     public void deleteNews() throws Exception {
-        mockMvc.perform(delete(API_NEWS + "/" + testNews.getId()))
+        mockMvc.perform(delete(String.join("/", API_NEWS, testNews.getId())))
                 .andExpect(status().isOk())
                 .andDo(print());
         assertFalse(newsService.exists(testNews.getId()));
