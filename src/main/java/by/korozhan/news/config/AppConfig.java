@@ -1,8 +1,11 @@
 package by.korozhan.news.config;
 
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.io.ClassPathResource;
 
 @Configuration
 @ComponentScan(value = {
@@ -11,5 +14,10 @@ import org.springframework.context.annotation.Import;
 })
 @Import({MongoConfig.class})
 public class AppConfig {
-
+    @Bean
+    public PropertyPlaceholderConfigurer preferencesPlaceholderConfigurer() {
+        PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
+        configurer.setLocations(new ClassPathResource("application.properties"));
+        return configurer;
+    }
 }
