@@ -9,7 +9,7 @@ import java.util.List;
  * Veronika Korozhan March 11, 2018.
  */
 @Repository
-public interface CategoryRepository extends GenericRepository<Category, Long> {
+public interface CategoryRepository extends GenericRepository<Category, String> {
 
-    List<Category> findByName(String displayName);
+    List<Category> findByDisplayName(String displayName);
 }

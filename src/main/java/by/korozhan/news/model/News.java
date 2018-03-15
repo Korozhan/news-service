@@ -12,7 +12,7 @@ import java.util.Date;
 @Document
 public class News implements Serializable{
     @Id
-    private Long id;
+    private String id;
     private Date publicDate;
     private String title;
     private String body;
@@ -26,18 +26,11 @@ public class News implements Serializable{
         this.body = body;
     }
 
-    public News(Long id, Date publicDate, String title, String body) {
-        this.id = id;
-        this.publicDate = publicDate;
-        this.title = title;
-        this.body = body;
-    }
-
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

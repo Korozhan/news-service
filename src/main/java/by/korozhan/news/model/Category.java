@@ -13,7 +13,7 @@ import java.util.List;
 @Document
 public class Category implements Serializable{
     @Id
-    private Long id;
+    private String id;
     private String displayName;
     @DBRef
     private List<News> news;
@@ -21,22 +21,16 @@ public class Category implements Serializable{
     public Category() {
     }
 
-    public Category(Long id, String displayName) {
-        this.id = id;
-        this.displayName = displayName;
-    }
-
-    public Category(Long id, String displayName, List<News> news) {
-        this.id = id;
+    public Category(String displayName, List<News> news) {
         this.displayName = displayName;
         this.news = news;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

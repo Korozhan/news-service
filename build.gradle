@@ -9,6 +9,7 @@ repositories {
     mavenLocal()
     mavenCentral()
 }
+
 ext {
     springdataMongodbVersion = '2.0.5.RELEASE'
     springframeworkVersion = '5.0.4.RELEASE'
@@ -18,6 +19,7 @@ ext {
     log4jVersion = '1.2.17'
     slf4jVersion = '1.7.25'
     junitVersion = '4.12'
+    jaywayVersion = '2.4.0'
 }
 
 dependencies {
@@ -25,7 +27,7 @@ dependencies {
     compile "org.springframework:spring-webmvc:${springframeworkVersion}"
     compile "org.springframework':spring-web:${springframeworkVersion}"
     compile "org.springframework:spring-context-support:${springframeworkVersion}"
-    compile "javax.servlet:javax.servlet-api:${servletapiVersion}"
+    providedCompile "javax.servlet:javax.servlet-api:${servletapiVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     compile "org.springframework:spring-test:${springframeworkVersion}"
     compile "com.google.guava:guava:${guavaVersion}"
@@ -33,4 +35,5 @@ dependencies {
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
     compile "org.slf4j:slf4j-log4j12:${slf4jVersion}"
     testCompile "junit:junit:${junitVersion}"
+    testCompile "com.jayway.jsonpath:json-path:${jaywayVersion}"
 }
