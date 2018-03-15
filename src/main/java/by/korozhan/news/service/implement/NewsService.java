@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Veronika Korozhan March 11, 2018.
@@ -25,9 +24,14 @@ public class NewsService implements INewsService {
         return newsRepository.save(news);
     }
 
+    @Override
+    public News update(News news) {
+        return newsRepository.save(news);
+    }
+
     @Transactional
     @Override
-    public void delete(Integer id) {
+    public void delete(String id) {
         newsRepository.deleteById(id);
     }
 
@@ -39,23 +43,24 @@ public class NewsService implements INewsService {
 
     @Transactional(readOnly = true)
     @Override
-    public Optional<News> findOne(Integer id) {
-        return newsRepository.findById(id);
-    }
-
-    @Override
-    public boolean exists(Integer id) {
-        return newsRepository.existsById(id);
-    }
-
-    @Override
-    public long count() {
-        return newsRepository.count();
+    public News findOne(String hexId) {
+        return newsRepository.findById(hexId).orElse(null);
     }
 
     @Transactional(readOnly = true)
     @Override
-    public List<News> findByTiltle(String title) {
+    public List<News> findByTitle(String title) {
         return Lists.newArrayList(newsRepository.findByTitle(title));
+    }
+
+    @Transactional
+    @Override
+    public void deleteAll() {
+        newsRepository.deleteAll();
+    }
+
+    @Override
+    public boolean exists(String hexId) {
+        return newsRepository.existsById(hexId);
     }
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Veronika Korozhan March 11, 2018.
@@ -25,10 +24,15 @@ public class CategoryService implements ICategoryService {
         return categoryRepository.save(category);
     }
 
+    @Override
+    public Category update(Category category) {
+        return categoryRepository.save(category);
+    }
+
     @Transactional
     @Override
-    public void delete(Integer id) {
-        categoryRepository.deleteById(id);
+    public void delete(String hexId) {
+        categoryRepository.deleteById(hexId);
     }
 
     @Transactional(readOnly = true)
@@ -39,23 +43,25 @@ public class CategoryService implements ICategoryService {
 
     @Transactional(readOnly = true)
     @Override
-    public Optional<Category> findOne(Integer id) {
-        return categoryRepository.findById(id);
+    public Category findOne(String hexId) {
+        return categoryRepository.findById(hexId).orElse(null);
     }
 
-    @Override
-    public boolean exists(Integer id) {
-        return categoryRepository.existsById(id);
-    }
 
     @Override
-    public long count() {
-        return categoryRepository.count();
+    public boolean exists(String hexId) {
+        return categoryRepository.existsById(hexId);
     }
 
     @Transactional(readOnly = true)
     @Override
     public List<Category> findByName(String displayName) {
-        return Lists.newArrayList(categoryRepository.findByName(displayName));
+        return Lists.newArrayList(categoryRepository.findByDisplayName(displayName));
+    }
+
+    @Transactional
+    @Override
+    public void deleteAll() {
+        categoryRepository.deleteAll();
     }
 }

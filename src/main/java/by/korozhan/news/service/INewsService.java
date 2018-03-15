@@ -3,24 +3,25 @@ package by.korozhan.news.service;
 import by.korozhan.news.model.News;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Veronika Korozhan March 11, 2018.
  */
 public interface INewsService {
 
-    News save(News news);
-
-    void delete(Integer id);
-
     List<News> findAll();
 
-    Optional<News> findOne(Integer id);
+    News findOne(String hexId);
 
-    boolean exists(Integer id);
+    List<News> findByTitle(String title);
 
-    long count();
+    News save(News news);
 
-    List<News> findByTiltle(String title);
+    News update(News news);
+
+    void delete(String hexId);
+
+    void deleteAll();
+
+    boolean exists(String hexId);
 }
