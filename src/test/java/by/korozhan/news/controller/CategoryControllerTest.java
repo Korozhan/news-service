@@ -49,7 +49,6 @@ public class CategoryControllerTest extends AbstractControllerTest{
                 .andExpect(jsonPath("$.size()").value(1))
                 .andExpect(jsonPath("$[0].id").value(validBsonId()))
                 .andExpect(jsonPath("$[0].displayName").value(testCategory.getDisplayName()))
-                .andExpect(jsonPath("$[0].news").value(testCategory.getNews()))
                 .andDo(print());
     }
 
@@ -74,7 +73,6 @@ public class CategoryControllerTest extends AbstractControllerTest{
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.id").value(validBsonId()))
                 .andExpect(jsonPath("$.displayName").value(category.getDisplayName()))
-                .andExpect(jsonPath("$.news").value(category.getNews()))
                 .andDo(print());
     }
 
@@ -88,7 +86,6 @@ public class CategoryControllerTest extends AbstractControllerTest{
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.id").value(validBsonId()))
                 .andExpect(jsonPath("$.displayName").value(testCategory.getDisplayName()))
-                .andExpect(jsonPath("$.news").value(testCategory.getNews()))
                 .andDo(print());
     }
 

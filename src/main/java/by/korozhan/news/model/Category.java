@@ -1,5 +1,7 @@
 package by.korozhan.news.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,20 +12,20 @@ import java.util.List;
 /**
  * Veronika Korozhan March 1, 2018.
  */
+@ApiModel(description="All details about the category")
 @Document
 public class Category implements Serializable{
     @Id
+    @ApiModelProperty(notes = "The database generated category id")
     private String id;
+    @ApiModelProperty(notes = "Category display name")
     private String displayName;
-    @DBRef
-    private List<News> news;
 
     public Category() {
     }
 
     public Category(String displayName, List<News> news) {
         this.displayName = displayName;
-        this.news = news;
     }
 
     public String getId() {
@@ -42,11 +44,4 @@ public class Category implements Serializable{
         this.displayName = displayName;
     }
 
-    public List<News> getNews() {
-        return news;
-    }
-
-    public void setNews(List<News> news) {
-        this.news = news;
-    }
 }
