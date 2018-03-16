@@ -41,9 +41,11 @@ public class CategoryRepositoryTest {
 
     @Test
     public void findByDisplayName() throws Exception {
-        List<Category> news = categoryRepository.findByDisplayName("test display name");
-        assertEquals(news.size(), 1);
-        assertEquals(news.get(0), testCategory);
+        List<Category> categories = categoryRepository.findByDisplayName("test display name");
+        assertEquals(categories.size(), 1);
+        categories.forEach(category -> {
+            assertEquals(category.getDisplayName(), testCategory.getDisplayName());
+        });
     }
 
 }

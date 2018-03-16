@@ -27,8 +27,6 @@ ext {
 dependencies {
     compile "org.springframework.data:spring-data-mongodb:${springdataMongodbVersion}"
     compile "org.springframework:spring-webmvc:${springframeworkVersion}"
-    compile "org.springframework:spring-web:${springframeworkVersion}"
-    compile "org.springframework:spring-context-support:${springframeworkVersion}"
     providedCompile "javax.servlet:javax.servlet-api:${servletapiVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     compile "org.springframework:spring-test:${springframeworkVersion}"

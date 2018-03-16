@@ -42,7 +42,9 @@ public class NewsRepositoryTest {
     public void findByTitle() throws Exception {
         List<News> news = newsRepository.findByTitle("test title");
         assertEquals(news.size(), 1);
-        assertEquals(news.get(0), testNews);
+        news.forEach(singleNews -> {
+            assertEquals(singleNews.getTitle(), testNews.getTitle());
+        });
     }
 
 }
