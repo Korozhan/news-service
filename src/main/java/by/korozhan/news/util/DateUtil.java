@@ -8,7 +8,7 @@ import java.util.Date;
  * Veronika Korozhan March 11, 2018.
  */
 public class DateUtil {
-    public static final String FORMAT_YMD_UNDERLINE = "dd-MM-yyyy";
+    public static final String FORMAT_DMY_UNDERLINE = "dd-MM-yyyy";
 
     public static Date stringToDate(String dateInString, String datePattern) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat(datePattern);

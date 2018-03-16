@@ -55,7 +55,7 @@ public class NewsControllerTest extends AbstractControllerTest{
                 .andExpect(jsonPath("$[0].id").value(validBsonId()))
                 .andExpect(jsonPath("$[0].title").value(testNews.getTitle()))
                 .andExpect(jsonPath("$[0].body").value(testNews.getBody()))
-                .andExpect(jsonPath("$[0].publicDate").value(DateUtil.dateToString(testNews.getPublicDate(), DateUtil.FORMAT_YMD_UNDERLINE)))
+                .andExpect(jsonPath("$[0].publicDate").value(DateUtil.dateToString(testNews.getPublicDate(), DateUtil.FORMAT_DMY_UNDERLINE)))
                 .andDo(print());
     }
 

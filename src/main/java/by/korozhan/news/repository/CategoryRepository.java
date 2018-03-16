@@ -3,8 +3,6 @@ package by.korozhan.news.repository;
 import by.korozhan.news.model.Category;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * Veronika Korozhan March 11, 2018.
  */

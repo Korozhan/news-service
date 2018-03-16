@@ -1,5 +1,6 @@
 package by.korozhan.news.config;
 
+import by.korozhan.news.util.DateUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -46,7 +47,7 @@ public class WebConfig implements WebMvcConfigurer {
     public ObjectMapper objectMapper() {
         return new Jackson2ObjectMapperBuilder()
                 .indentOutput(true)
-                .dateFormat(new SimpleDateFormat("dd-MM-yyyy"))
+                .dateFormat(new SimpleDateFormat(DateUtil.FORMAT_DMY_UNDERLINE))
                 .build();
     }
 
