@@ -13,7 +13,7 @@ public interface ICategoryService {
 
     Category findOne(String hexId);
 
-    List<Category> findByName(String displayName);
+    Category findByName(String displayName);
 
     Category save(Category news);
 

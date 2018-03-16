@@ -46,7 +46,7 @@ public class WebConfig implements WebMvcConfigurer {
     public ObjectMapper objectMapper() {
         return new Jackson2ObjectMapperBuilder()
                 .indentOutput(true)
-                .dateFormat(new SimpleDateFormat("yyyy-MM-dd"))
+                .dateFormat(new SimpleDateFormat("dd-MM-yyyy"))
                 .build();
     }
 

@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends GenericRepository<Category, String> {
 
-    List<Category> findByDisplayName(String displayName);
+    Category findByDisplayName(String displayName);
 }

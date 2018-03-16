@@ -37,6 +37,12 @@ public class NewsController {
         return newsService.findOne(hexId);
     }
 
+    @ApiOperation(value = "Search the news by category name", response = List.class)
+    @GetMapping("/category/{categoryName}")
+    public List<News> getNewsByCategory(@PathVariable String categoryName) {
+        return newsService.findByCategory(categoryName);
+    }
+
     @ApiOperation(value = "Add news", response = News.class)
     @PostMapping
     public News saveNews(@RequestBody News news) {

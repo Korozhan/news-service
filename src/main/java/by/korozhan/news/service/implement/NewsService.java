@@ -1,9 +1,10 @@
 package by.korozhan.news.service.implement;
 
+import by.korozhan.news.model.Category;
 import by.korozhan.news.model.News;
+import by.korozhan.news.repository.CategoryRepository;
 import by.korozhan.news.repository.NewsRepository;
 import by.korozhan.news.service.INewsService;
-import com.google.common.collect.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,8 @@ import java.util.List;
 public class NewsService implements INewsService {
     @Autowired
     private NewsRepository newsRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Transactional
     @Override
@@ -38,7 +41,7 @@ public class NewsService implements INewsService {
     @Transactional(readOnly = true)
     @Override
     public List<News> findAll() {
-        return Lists.newArrayList(newsRepository.findAll());
+        return newsRepository.findAll();
     }
 
     @Transactional(readOnly = true)
@@ -50,7 +53,14 @@ public class NewsService implements INewsService {
     @Transactional(readOnly = true)
     @Override
     public List<News> findByTitle(String title) {
-        return Lists.newArrayList(newsRepository.findByTitle(title));
+        return newsRepository.findByTitle(title);
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<News> findByCategory(String categoryName) {
+        Category category = categoryRepository.findByDisplayName(categoryName);
+        return newsRepository.findByCategory(category);
     }
 
     @Transactional

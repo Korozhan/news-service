@@ -24,4 +24,6 @@ public interface INewsService {
     void deleteAll();
 
     boolean exists(String hexId);
+
+    List<News> findByCategory(String categoryName);
 }

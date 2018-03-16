@@ -9,9 +9,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
-import java.util.Arrays;
-import java.util.Date;
-
 import static by.korozhan.news.util.Constants.API_CATEGORY;
 import static by.korozhan.news.util.Matchers.validBsonId;
 import static java.lang.System.currentTimeMillis;
@@ -33,7 +30,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        testCategory = categoryService.save(new Category("test display name", Arrays.asList(new News(new Date(), "test title", "test body"))));
+        testCategory = categoryService.save(new Category("test display name"));
     }
 
     @After
@@ -65,7 +62,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
 
     @Test
     public void saveCategory() throws Exception {
-        Category category = new Category("test display name", Arrays.asList(new News(new Date(), "test title", "test body")));
+        Category category = new Category("test display name");
         mockMvc.perform(post(API_CATEGORY)
                 .content(objectMapper.writeValueAsString(category))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))

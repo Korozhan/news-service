@@ -24,14 +24,17 @@ public class News implements Serializable{
     private String title;
     @ApiModelProperty(notes = "The body of the news")
     private String body;
+    @ApiModelProperty(notes = "The category of the news")
+    private Category category;
 
     public News() {
     }
 
-    public News(Date publicDate, String title, String body) {
+    public News(Date publicDate, String title, String body, Category category) {
         this.publicDate = publicDate;
         this.title = title;
         this.body = body;
+        this.category = category;
     }
 
     public String getId() {
@@ -64,5 +67,13 @@ public class News implements Serializable{
 
     public void setBody(String body) {
         this.body = body;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

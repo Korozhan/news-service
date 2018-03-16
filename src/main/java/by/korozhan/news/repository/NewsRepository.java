@@ -1,5 +1,6 @@
 package by.korozhan.news.repository;
 
+import by.korozhan.news.model.Category;
 import by.korozhan.news.model.News;
 import org.springframework.stereotype.Repository;
 
@@ -12,4 +13,6 @@ import java.util.List;
 public interface NewsRepository extends GenericRepository<News, String> {
 
     List<News> findByTitle(String title);
+
+    List<News> findByCategory(Category categoryName);
 }

@@ -16,7 +16,6 @@ ext {
     springframeworkVersion = '5.0.4.RELEASE'
     servletapiVersion = '4.0.0'
     jacksonVersion = '2.9.4'
-    guavaVersion = '24.0-jre'
     log4jVersion = '1.2.17'
     slf4jVersion = '1.7.25'
     swaggerVersion = '2.7.0'
@@ -30,7 +29,6 @@ dependencies {
     providedCompile "javax.servlet:javax.servlet-api:${servletapiVersion}"
     compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     compile "org.springframework:spring-test:${springframeworkVersion}"
-    compile "com.google.guava:guava:${guavaVersion}"
     compile "log4j:log4j:${log4jVersion}"
     compile "org.slf4j:slf4j-api:${slf4jVersion}"
     compile "org.slf4j:slf4j-log4j12:${slf4jVersion}"

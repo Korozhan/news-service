@@ -24,7 +24,7 @@ public class Category implements Serializable{
     public Category() {
     }
 
-    public Category(String displayName, List<News> news) {
+    public Category(String displayName) {
         this.displayName = displayName;
     }
 

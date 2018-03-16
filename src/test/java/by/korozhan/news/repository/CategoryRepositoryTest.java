@@ -31,7 +31,7 @@ public class CategoryRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        testCategory = categoryRepository.save(new Category("test display name", Arrays.asList(new News(new Date(), "test title", "test body"))));
+        testCategory = categoryRepository.save(new Category("test display name"));
     }
 
     @After
@@ -41,11 +41,8 @@ public class CategoryRepositoryTest {
 
     @Test
     public void findByDisplayName() throws Exception {
-        List<Category> categories = categoryRepository.findByDisplayName("test display name");
-        assertEquals(categories.size(), 1);
-        categories.forEach(category -> {
-            assertEquals(category.getDisplayName(), testCategory.getDisplayName());
-        });
+        Category category = categoryRepository.findByDisplayName("test display name");
+        assertEquals(category.getDisplayName(), testCategory.getDisplayName());
     }
 
 }

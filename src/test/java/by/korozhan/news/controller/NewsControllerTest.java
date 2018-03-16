@@ -1,6 +1,8 @@
 package by.korozhan.news.controller;
 
+import by.korozhan.news.model.Category;
 import by.korozhan.news.model.News;
+import by.korozhan.news.service.ICategoryService;
 import by.korozhan.news.service.INewsService;
 import by.korozhan.news.util.DateUtil;
 import org.junit.After;
@@ -25,17 +27,22 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class NewsControllerTest extends AbstractControllerTest{
     @Autowired
     private INewsService newsService;
+    @Autowired
+    private ICategoryService categoryService;
 
     private News testNews;
+    private Category testCategory;
 
     @Before
     public void setUp() throws Exception {
         super.setUp();
-        testNews = newsService.save(new News(new Date(), "test title", "test body"));
+        testCategory = categoryService.save(new Category("test category"));
+        testNews = newsService.save(new News(new Date(), "test title", "test body", testCategory));
     }
 
     @After
     public void tearDown() throws Exception {
+        categoryService.deleteAll();
         newsService.deleteAll();
     }
 
@@ -65,8 +72,22 @@ public class NewsControllerTest extends AbstractControllerTest{
     }
 
     @Test
+    public void getNewsByCategory() throws Exception {
+        mockMvc.perform(get(API_NEWS + "/category/" + testNews.getCategory().getDisplayName())
+                .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andExpect(jsonPath("$[0].id").value(validBsonId()))
+                .andExpect(jsonPath("$[0].title").value(testNews.getTitle()))
+                .andExpect(jsonPath("$[0].body").value(testNews.getBody()))
+                .andExpect(jsonPath("$[0].category.id").value(testNews.getCategory().getId()))
+                .andExpect(jsonPath("$[0].category.displayName").value(testNews.getCategory().getDisplayName()))
+                .andDo(print());
+    }
+
+    @Test
     public void saveNews() throws Exception {
-        News news = new News(new Date(), "test new title", "test new body");
+        News news = new News(new Date(), "test new title", "test new body", testCategory);
         mockMvc.perform(post(API_NEWS)
                 .content(objectMapper.writeValueAsString(news))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
