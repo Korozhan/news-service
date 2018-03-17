@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 /**
  * Veronika Korozhan March 5, 2018.
  */
-@Configuration
 @EnableMongoRepositories(basePackages = "by.korozhan.news.repository")
 public class MongoConfig extends AbstractMongoConfiguration {
     private final String dbName;

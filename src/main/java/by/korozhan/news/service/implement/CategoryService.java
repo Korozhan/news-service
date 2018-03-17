@@ -23,6 +23,7 @@ public class CategoryService implements ICategoryService {
         return categoryRepository.save(category);
     }
 
+    @Transactional
     @Override
     public Category update(Category category) {
         return categoryRepository.save(category);

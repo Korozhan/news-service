@@ -1,27 +1,30 @@
-package by.korozhan.news.model;
+package by.korozhan.news.dto;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Veronika Korozhan March 1, 2018.
+ * Veronika Korozhan March 17, 2018.
  */
-@Document
-public class News implements Serializable{
-    @Id
+@ApiModel(description="All details about the news")
+public class NewsDTO {
+    @ApiModelProperty(notes = "The database generated news id")
     private String id;
+    @ApiModelProperty(notes = "News publication date")
     private Date publicDate;
+    @ApiModelProperty(notes = "The title of the news")
     private String title;
+    @ApiModelProperty(notes = "The body of the news")
     private String body;
-    private Category category;
+    @ApiModelProperty(notes = "The category of the news")
+    private CategoryDTO category;
 
-    public News() {
+    public NewsDTO() {
     }
 
-    public News(Date publicDate, String title, String body, Category category) {
+    public NewsDTO(Date publicDate, String title, String body, CategoryDTO category) {
         this.publicDate = publicDate;
         this.title = title;
         this.body = body;
@@ -60,11 +63,11 @@ public class News implements Serializable{
         this.body = body;
     }
 
-    public Category getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryDTO category) {
         this.category = category;
     }
 }

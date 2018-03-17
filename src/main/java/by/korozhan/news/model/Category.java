@@ -1,7 +1,5 @@
 package by.korozhan.news.model;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,13 +8,10 @@ import java.io.Serializable;
 /**
  * Veronika Korozhan March 1, 2018.
  */
-@ApiModel(description="All details about the category")
 @Document
 public class Category implements Serializable{
     @Id
-    @ApiModelProperty(notes = "The database generated category id")
     private String id;
-    @ApiModelProperty(notes = "Category display name")
     private String displayName;
 
     public Category() {

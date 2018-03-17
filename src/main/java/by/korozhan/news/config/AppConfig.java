@@ -1,5 +1,6 @@
 package by.korozhan.news.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,5 +20,10 @@ public class AppConfig {
         PropertyPlaceholderConfigurer configurer = new PropertyPlaceholderConfigurer();
         configurer.setLocations(new ClassPathResource("application.properties"));
         return configurer;
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
     }
 }

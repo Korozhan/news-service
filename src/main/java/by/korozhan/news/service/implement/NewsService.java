@@ -27,6 +27,7 @@ public class NewsService implements INewsService {
         return newsRepository.save(news);
     }
 
+    @Transactional
     @Override
     public News update(News news) {
         return newsRepository.save(news);

@@ -1,14 +1,17 @@
 package by.korozhan.news.controller;
 
+import by.korozhan.news.dto.NewsDTO;
 import by.korozhan.news.model.News;
 import by.korozhan.news.service.INewsService;
 import io.swagger.annotations.Api;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.ApiOperation;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Veronika Korozhan March 12, 2018.
@@ -17,42 +20,49 @@ import java.util.List;
 @RequestMapping(value = "/api/news")
 @Api(value = "/api/news", description = "News operations")
 public class NewsController {
-
+    private final ModelMapper modelMapper;
     private final INewsService newsService;
 
     @Autowired
-    public NewsController(INewsService newsService) {
+    public NewsController(INewsService newsService, ModelMapper modelMapper) {
         this.newsService = newsService;
+        this.modelMapper = modelMapper;
     }
 
     @ApiOperation(value = "View a list of available news", response = List.class)
     @GetMapping
-    public List<News> getAllNews() {
-        return newsService.findAll();
+    public List<NewsDTO> getAllNews() {
+        return newsService.findAll().stream()
+                .map(news -> modelMapper.map(news, NewsDTO.class))
+                .collect(Collectors.toList());
     }
 
-    @ApiOperation(value = "Search the news with hexId", response = News.class)
+    @ApiOperation(value = "Search the news with hexId", response = NewsDTO.class)
     @GetMapping("/{hexId}")
-    public News getNews(@PathVariable String hexId) {
-        return newsService.findOne(hexId);
+    public NewsDTO getNews(@PathVariable String hexId) {
+        return modelMapper.map(newsService.findOne(hexId), NewsDTO.class);
     }
 
     @ApiOperation(value = "Search the news by category name", response = List.class)
     @GetMapping("/category/{categoryName}")
-    public List<News> getNewsByCategory(@PathVariable String categoryName) {
-        return newsService.findByCategory(categoryName);
+    public List<NewsDTO> getNewsByCategory(@PathVariable String categoryName) {
+        return newsService.findByCategory(categoryName).stream()
+                .map(news -> modelMapper.map(news, NewsDTO.class))
+                .collect(Collectors.toList());
     }
 
-    @ApiOperation(value = "Add news", response = News.class)
+    @ApiOperation(value = "Add news", response = NewsDTO.class)
     @PostMapping
-    public News saveNews(@RequestBody News news) {
-        return newsService.save(news);
+    public NewsDTO saveNews(@RequestBody NewsDTO news) {
+        return modelMapper.map(newsService.save(
+                modelMapper.map(news, News.class)), NewsDTO.class);
     }
 
     @ApiOperation(value = "Update news", response = News.class)
     @PutMapping
-    public News updateNews(@RequestBody News news) {
-        return newsService.update(news);
+    public NewsDTO updateNews(@RequestBody NewsDTO news) {
+        return modelMapper.map(newsService.update(
+                modelMapper.map(news, News.class)), NewsDTO.class);
     }
 
     @ApiOperation(value = "Remove news")

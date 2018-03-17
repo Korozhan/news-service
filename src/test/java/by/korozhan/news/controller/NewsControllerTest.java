@@ -1,5 +1,6 @@
 package by.korozhan.news.controller;
 
+import by.korozhan.news.dto.NewsDTO;
 import by.korozhan.news.model.Category;
 import by.korozhan.news.model.News;
 import by.korozhan.news.service.ICategoryService;
@@ -8,6 +9,7 @@ import by.korozhan.news.util.DateUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
@@ -29,6 +31,8 @@ public class NewsControllerTest extends AbstractControllerTest{
     private INewsService newsService;
     @Autowired
     private ICategoryService categoryService;
+    @Autowired
+    private ModelMapper modelMapper;
 
     private News testNews;
     private Category testCategory;
@@ -89,7 +93,7 @@ public class NewsControllerTest extends AbstractControllerTest{
     public void saveNews() throws Exception {
         News news = new News(new Date(), "test new title", "test new body", testCategory);
         mockMvc.perform(post(API_NEWS)
-                .content(objectMapper.writeValueAsString(news))
+                .content(objectMapper.writeValueAsString(modelMapper.map(news, NewsDTO.class)))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -104,7 +108,7 @@ public class NewsControllerTest extends AbstractControllerTest{
         testNews.setTitle(testNews.getTitle() + currentTimeMillis());
         testNews.setBody(testNews.getBody() + currentTimeMillis());
         mockMvc.perform(put(API_NEWS)
-                .content(objectMapper.writeValueAsString(testNews))
+                .content(objectMapper.writeValueAsString(modelMapper.map(testNews, NewsDTO.class)))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
