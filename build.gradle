@@ -1,14 +1,31 @@
 group 'by.korozhan.news'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+gretty {
+    httpPort = 9876
+    contextPath = '/'
+}
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenLocal()
     mavenCentral()
+    jcenter()
 }
 
 ext {

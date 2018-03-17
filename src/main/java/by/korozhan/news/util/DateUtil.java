@@ -13,7 +13,6 @@ public class DateUtil {
     public static Date stringToDate(String dateInString, String datePattern) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat(datePattern);
         return formatter.parse(dateInString);
-
     }
 
     public static Object dateToString(Date date, String datePattern) {
