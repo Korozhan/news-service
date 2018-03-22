@@ -1,0 +1,27 @@
+<div>
+  <form class="form">
+    <h3 class="form__legend">Add New Category</h3>
+    <div class="form__row">
+      <label for="category-display-name" class="form__control">Category Display Name</label>
+      <input id="category-display-name" type="text" name="category-display-name" class="form__control" [(ngModel)]="categoryName">
+      <button type="button" class="button" (click)="save()">Save</button>
+    </div>
+  </form>
+  <table class="table">
+    <caption>
+      <h3>Categories</h3>
+    </caption>
+    <thead>
+    <tr>
+      <td>Id</td>
+      <td>Display Name</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let category of categories">
+      <td>{{category.id}}</td>
+      <td><a routerLink="/news" [queryParams]="{category: category.displayName}">{{category.displayName}}</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

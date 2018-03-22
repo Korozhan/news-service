@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 
 import static by.korozhan.news.util.Constants.API_CATEGORIES;
-import static by.korozhan.news.util.Matchers.validBsonId;
+import static by.korozhan.news.util.Matchers.validJsonId;
 import static java.lang.System.currentTimeMillis;
 import static org.junit.Assert.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -47,7 +47,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.size()").value(1))
-                .andExpect(jsonPath("$[0].id").value(validBsonId()))
+                .andExpect(jsonPath("$[0].id").value(validJsonId()))
                 .andExpect(jsonPath("$[0].displayName").value(testCategory.getDisplayName()))
                 .andDo(print());
     }
@@ -58,7 +58,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id").value(validBsonId()))
+                .andExpect(jsonPath("$.id").value(validJsonId()))
                 .andExpect(jsonPath("$.displayName").value(testCategory.getDisplayName()))
                 .andDo(print());
     }
@@ -71,7 +71,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id").value(validBsonId()))
+                .andExpect(jsonPath("$.id").value(validJsonId()))
                 .andExpect(jsonPath("$.displayName").value(category.getDisplayName()))
                 .andDo(print());
     }
@@ -84,7 +84,7 @@ public class CategoryControllerTest extends AbstractControllerTest{
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id").value(validBsonId()))
+                .andExpect(jsonPath("$.id").value(validJsonId()))
                 .andExpect(jsonPath("$.displayName").value(testCategory.getDisplayName()))
                 .andDo(print());
     }

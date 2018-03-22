@@ -56,3 +56,17 @@ dependencies {
     testCompile "junit:junit:${junitVersion}"
     testCompile "com.jayway.jsonpath:json-path:${jaywayVersion}"
 }
+
+task buildClient(type: Exec) {
+    description 'Builds news client code'
+    workingDir './news-client'
+    commandLine 'npm.cmd', 'run', 'build'
+}
+
+task copyClient(type: Copy, dependsOn: buildClient) {
+    description 'Copies client build code to webapp'
+    from './news-client/dist'
+    into './src/main/webapp'
+}
+
+tasks.war.dependsOn copyClient

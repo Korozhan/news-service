@@ -1,0 +1,129 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  border: none;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+  padding: 10px 25px;
+  margin: 2px;
+  color: #ffffff;
+  background-color: #0074d9;
+}
+
+.table {
+  table-layout: auto;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table caption, .table thead .table th {
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #a39d49;
+}
+
+.table tr {
+  margin: 0;
+  text-align: left;
+}
+
+.table td {
+  padding: 0.2em 0.3em;
+}
+
+.table tbody tr.hover:hover {
+  cursor: pointer;
+  background-color: #cecece;
+}
+
+button {
+  margin-top: 2em;
+}
+
+.form {
+  padding: 25px;
+  border: 1px solid #a39d49;
+}
+
+.form__legend {
+  display: block;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #a39d49;
+  padding-left: 2px;
+  padding-right: 2px;
+  border-bottom: 1px solid #a39d49;
+}
+
+.form__control {
+  white-space: nowrap;
+  padding: 8px 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+label {
+  font-weight: bold;
+}
+
+:not(label).form__control {
+  font-size: 1em;
+}
+
+select[disabled="disabled"].form__control,
+input[disabled="disabled"].form__control,
+button[disabled="disabled"].form__control {
+  color: black;
+}
+
+.form__row {
+  line-height: 1.1em;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+
+.form__row--right {
+  display: flex;
+  justify-content: right;
+}
+
+.form__row .form__control {
+  text-align: left;
+  width: 100%;
+}
+
+button.form__control {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: #0074d9;
+}
+
+input[type="text"].form__control {
+  text-align: center;
+  border-bottom: 1px solid #2c802c;
+}
+
+input[type="text"].form__control:focus {
+  background-color: #a39d49;
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+}
+
+textarea.form__control {
+  height: 20em;
+  border: 1px solid #2c802c;
+}
+
+textarea.form__control:focus {
+  background-color: #a39d49;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.form--default {
+  margin: 0 auto;
+  display: inline-block;
+  width: 60%;
+}

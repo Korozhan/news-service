@@ -1,0 +1,28 @@
+<div>
+  <form class="form">
+    <h3>Create News</h3>
+    <div>
+      <label for="news-title" class="form__control">Title</label>
+      <input id="news-title" type="text" name="news-title" class="form__control" [(ngModel)]="news.title">
+    </div>
+    <div>
+      <label for="news-category" class="form__control">Category</label>
+      <select id="news-category" name="news-category" class="form__control" [(ngModel)]="categoryName">
+        <option [value]="defaultCategory.id">{{defaultCategory.displayName}}</option>
+        <option *ngFor="let category of categories" [value]="category.displayName">{{category.displayName}}</option>
+      </select>
+    </div>
+    <div class="form__row">
+      <label for="news-body" class="form__control">Body</label>
+      <textarea id="news-body" name="news-body" class="form__control" [(ngModel)]="news.body" rows="10"></textarea>
+    </div>
+    <div class="form__row">
+      <label for="news-public-date" class="form__control">Public Date</label>
+      <input id="news-public-date" name="news-public-date" class="form__control" type="date" [(ngModel)]="news.publicDate" readonly>
+    </div>
+    <div class="form__row form__row--right">
+      <button type="button" (click)="save()" class="button">Save</button>
+      <button type="button" (click)="navigateToNewsList()" class="button">Cancel</button>
+    </div>
+  </form>
+</div>

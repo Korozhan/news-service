@@ -1,0 +1,46 @@
+<div>
+  <form class="form">
+    <h3>Search News</h3>
+    <div>
+      <div>
+        <select id="search-news-category" name="search-news-category" [(ngModel)]="param" (change)="search()">
+          <option [value]="defaultCategory.id">{{defaultCategory.displayName}}</option>
+          <option *ngFor="let category of categories" [value]="category.displayName">{{category.displayName}}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <table class="table">
+    <caption>
+      <h3>News List</h3>
+      <div>
+        <button type="button" class="button" routerLink="/news/add">Add News</button>
+        <button type="button" class="button" (click)="remove()">Remove News</button>
+      </div>
+    </caption>
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>ID</th>
+      <th>Public Date</th>
+      <th>Title</th>
+      <th>Body</th>
+      <th>Category</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let singleNews of news" class="hover">
+      <td><input type="checkbox" [(ngModel)]="singleNews.checked"></td>
+      <td>{{singleNews.id}}</td>
+      <td>{{singleNews.title}}</td>
+      <td>{{singleNews.category.displayName}}</td>
+      <td>{{singleNews.body}}</td>
+      <td>{{singleNews.publicDate}}</td>
+      <td>
+        <button class="button" [routerLink]="['/news/edit', singleNews.id]">Edit</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

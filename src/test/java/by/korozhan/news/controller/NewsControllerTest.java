@@ -16,7 +16,7 @@ import org.springframework.http.MediaType;
 import java.util.Date;
 
 import static by.korozhan.news.util.Constants.API_NEWS;
-import static by.korozhan.news.util.Matchers.validBsonId;
+import static by.korozhan.news.util.Matchers.validJsonId;
 import static java.lang.System.currentTimeMillis;
 import static org.junit.Assert.assertFalse;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -56,7 +56,7 @@ public class NewsControllerTest extends AbstractControllerTest{
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.size()").value(1))
-                .andExpect(jsonPath("$[0].id").value(validBsonId()))
+                .andExpect(jsonPath("$[0].id").value(validJsonId()))
                 .andExpect(jsonPath("$[0].title").value(testNews.getTitle()))
                 .andExpect(jsonPath("$[0].body").value(testNews.getBody()))
                 .andExpect(jsonPath("$[0].publicDate").value(DateUtil.dateToString(testNews.getPublicDate(), DateUtil.FORMAT_DMY_UNDERLINE)))
@@ -69,7 +69,7 @@ public class NewsControllerTest extends AbstractControllerTest{
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id").value(validBsonId()))
+                .andExpect(jsonPath("$.id").value(validJsonId()))
                 .andExpect(jsonPath("$.title").value(testNews.getTitle()))
                 .andExpect(jsonPath("$.body").value(testNews.getBody()))
                 .andDo(print());
@@ -81,7 +81,7 @@ public class NewsControllerTest extends AbstractControllerTest{
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$[0].id").value(validBsonId()))
+                .andExpect(jsonPath("$[0].id").value(validJsonId()))
                 .andExpect(jsonPath("$[0].title").value(testNews.getTitle()))
                 .andExpect(jsonPath("$[0].body").value(testNews.getBody()))
                 .andExpect(jsonPath("$[0].category.id").value(testNews.getCategory().getId()))
@@ -97,7 +97,7 @@ public class NewsControllerTest extends AbstractControllerTest{
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id").value(validBsonId()))
+                .andExpect(jsonPath("$.id").value(validJsonId()))
                 .andExpect(jsonPath("$.title").value(news.getTitle()))
                 .andExpect(jsonPath("$.body").value(news.getBody()))
                 .andDo(print());
@@ -112,7 +112,7 @@ public class NewsControllerTest extends AbstractControllerTest{
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
-                .andExpect(jsonPath("$.id").value(validBsonId()))
+                .andExpect(jsonPath("$.id").value(validJsonId()))
                 .andExpect(jsonPath("$.title").value(testNews.getTitle()))
                 .andExpect(jsonPath("$.body").value(testNews.getBody()))
                 .andDo(print());
