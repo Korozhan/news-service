@@ -5,11 +5,11 @@ import {NewsComponent} from "./news/news.component";
 import {CategoryComponent} from "./category/category.component";
 
 const routes: Routes = [
-  {path: '**', component: NewsListComponent},
   {path: 'news', component: NewsListComponent},
   {path: 'news/add', component: NewsComponent},
   {path: 'news/edit/:id', component: NewsComponent},
-  {path: 'categories', component: CategoryComponent}
+  {path: 'categories', component: CategoryComponent},
+  {path: '**', component: NewsListComponent}
 ];
 
 @NgModule({

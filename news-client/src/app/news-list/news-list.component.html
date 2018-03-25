@@ -3,8 +3,8 @@
     <h3>Search News</h3>
     <div>
       <div>
-        <select id="search-news-category" name="search-news-category" [(ngModel)]="param" (change)="search()">
-          <option [value]="defaultCategory.id">{{defaultCategory.displayName}}</option>
+        <select id="search-news-category" name="search-news-category" [(ngModel)]="category" (change)="search()">
+          <option [value]="defaultCategory.displayName">{{defaultCategory.displayName}}</option>
           <option *ngFor="let category of categories" [value]="category.displayName">{{category.displayName}}</option>
         </select>
       </div>
@@ -33,10 +33,10 @@
     <tr *ngFor="let singleNews of news" class="hover">
       <td><input type="checkbox" [(ngModel)]="singleNews.checked"></td>
       <td>{{singleNews.id}}</td>
-      <td>{{singleNews.title}}</td>
-      <td>{{singleNews.category.displayName}}</td>
-      <td>{{singleNews.body}}</td>
       <td>{{singleNews.publicDate}}</td>
+      <td>{{singleNews.title}}</td>
+      <td>{{singleNews.body}}</td>
+      <td>{{singleNews.category.displayName}}</td>
       <td>
         <button class="button" [routerLink]="['/news/edit', singleNews.id]">Edit</button>
       </td>

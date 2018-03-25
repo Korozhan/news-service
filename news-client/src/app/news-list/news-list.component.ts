@@ -15,7 +15,7 @@ export class NewsListComponent implements OnInit {
   news: News[];
   categories: Category[];
   defaultCategory = new Category(null, 'Select category');
-  param: string;
+  category: string;
 
   constructor(private http: HttpClient,
               private route: ActivatedRoute) {
@@ -24,7 +24,8 @@ export class NewsListComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(
       (params: Params) => {
-        this.param = params['category'];
+        this.category = params.hasOwnProperty('category')
+          ? params['category'] : this.defaultCategory.displayName;
         this.search();
       });
     this.http.get('/api/categories').subscribe(
@@ -32,9 +33,14 @@ export class NewsListComponent implements OnInit {
   }
 
   search() {
-    const param = Object.entries(this.param);
-    this.http.get<News[]>('/api/news', {params: {category: this.param}})
-      .subscribe((news: News[]) => this.news = news);
+    let params = {};
+    if (this.category !== this.defaultCategory.displayName) {
+      params = {category: this.category};
+    }
+    this.http.get<News[]>('/api/news', {params: params})
+      .subscribe((news: News[]) => {
+        this.news = news
+      });
   }
 
   remove() {

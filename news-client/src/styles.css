@@ -3,6 +3,10 @@
   border: none;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .button {
   border: none;
   cursor: pointer;
@@ -21,7 +25,7 @@
 .table caption, .table thead .table th {
   text-transform: uppercase;
   text-decoration: none;
-  color: #a39d49;
+  color: #365680;
 }
 
 .table tr {
@@ -44,17 +48,17 @@ button {
 
 .form {
   padding: 25px;
-  border: 1px solid #a39d49;
+  border: 1px solid #365680;
 }
 
 .form__legend {
   display: block;
   text-transform: uppercase;
   text-decoration: none;
-  color: #a39d49;
+  color: #365680;
   padding-left: 2px;
   padding-right: 2px;
-  border-bottom: 1px solid #a39d49;
+  border-bottom: 1px solid #365680;
 }
 
 .form__control {
@@ -102,22 +106,22 @@ button.form__control {
 
 input[type="text"].form__control {
   text-align: center;
-  border-bottom: 1px solid #2c802c;
+  border-bottom: 1px solid #cecece;
 }
 
 input[type="text"].form__control:focus {
-  background-color: #a39d49;
+  background-color: #cecece;
   color: #ffffff;
   border-bottom: 1px solid #ffffff;
 }
 
 textarea.form__control {
   height: 20em;
-  border: 1px solid #2c802c;
+  border: 1px solid #cecece;
 }
 
 textarea.form__control:focus {
-  background-color: #a39d49;
+  background-color: #cecece;
   color: #ffffff;
   border: 1px solid #ffffff;
 }

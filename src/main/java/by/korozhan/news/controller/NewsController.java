@@ -31,8 +31,9 @@ public class NewsController {
 
     @ApiOperation(value = "View a list of available news", response = List.class)
     @GetMapping
-    public List<NewsDTO> getAllNews() {
-        return newsService.findAll().stream()
+    public List<NewsDTO> getAllNews(@RequestParam(required = false, name = "category") String categoryName) {
+        List<News> newsList = (categoryName != null) ? newsService.findByCategory(categoryName) : newsService.findAll();
+        return newsList.stream()
                 .map(news -> modelMapper.map(news, NewsDTO.class))
                 .collect(Collectors.toList());
     }

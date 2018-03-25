@@ -1,3 +1,5 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
 group 'by.korozhan.news'
 version '1.0-SNAPSHOT'
 
@@ -57,10 +59,18 @@ dependencies {
     testCompile "com.jayway.jsonpath:json-path:${jaywayVersion}"
 }
 
-task buildClient(type: Exec) {
+def npmName = Os.isFamily(Os.FAMILY_WINDOWS) ? 'npm.cmd' : 'npm';
+
+task npmInstall(type: Exec) {
+    description 'Install client related packages'
+    workingDir './news-client'
+    commandLine npmName, 'install'
+}
+
+task buildClient(type: Exec, dependsOn: npmInstall) {
     description 'Builds news client code'
     workingDir './news-client'
-    commandLine 'npm.cmd', 'run', 'build'
+    commandLine npmName, 'run', 'build'
 }
 
 task copyClient(type: Copy, dependsOn: buildClient) {
